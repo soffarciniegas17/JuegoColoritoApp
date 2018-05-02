@@ -78,7 +78,12 @@ public class Inicio extends AppCompatActivity  {
             case R.id.puntajes:
                 TextView salir_x;
                 salir_x= (TextView) findViewById(R.id.salir);
-                salir_x.setOnClickListener(this );
+                salir_x.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pantalla_puntajes.dismiss();
+                    }
+                });
 
                 pantalla_puntajes.show();
 

@@ -3,8 +3,12 @@ package worldskills.com.juegocoloritoapp;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -59,6 +63,7 @@ public class Partida extends AppCompatActivity{
 
 
     public void MostrarJuego (){
+        palabras++;
         TextView score, palabrasC, palabra, bienmal;
         score= (TextView) findViewById(R.id.score);
         palabrasC= (TextView) findViewById(R.id.words);
@@ -76,12 +81,62 @@ public class Partida extends AppCompatActivity{
         if (Tipo_Partida==1){
             intentos= 3;
             tiempoPalabra=3000l;
-        } else {
-            if (timeOn){
-                DuracionPartida();
-
         }
         MostrarJuego();
+        TiempoPalabra();
+            ImageButton bcorrecto, bincorrecto;
+            bcorrecto= (ImageButton) findViewById(R.id.botonCorrecto);
+            bincorrecto= (ImageButton) findViewById(R.id.botonIncorrecto);
+
+            bcorrecto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (PalabraColor==PalabraLetra){
+                        bien++;
+                        puntaje++;
+                    } else {
+                        mal++;
+                        intentos--;
+                    }
+                    Juego();
+                }
+            });
+
+            bcorrecto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (PalabraColor!=PalabraLetra){
+                        bien++;
+                        puntaje++;
+                    } else {
+                        mal++;
+                        intentos--;
+                    }
+                    Juego();
+
+
+                }
+            });
+    }
+
+    public void TiempoPalabra(){
+        CountDownTimer a = new CountDownTimer(tiempoPalabra,1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                mal++;
+                intentos--;
+                Juego();
+
+            }
+        }.start();
+    }
+
+    public void IniciarPartida (){
 
     }
 }

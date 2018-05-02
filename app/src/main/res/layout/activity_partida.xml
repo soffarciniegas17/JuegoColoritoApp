@@ -9,7 +9,14 @@
         android:id="@+id/palabra"
         android:textSize="50dp"
         />
-
+<ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/botonCorrecto"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonIncorrecto"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
